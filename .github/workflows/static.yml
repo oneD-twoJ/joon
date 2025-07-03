@@ -1,3 +1,33 @@
+# .github/workflows/your-file.yml
+
+# ⭐️ 최상단에 추가!
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # ... (빌드 관련 스텝) ...
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './build' # 빌드 결과물이 있는 폴더 경로
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
