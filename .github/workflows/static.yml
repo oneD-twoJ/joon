@@ -23,6 +23,7 @@ jobs:
   # 1. 빌드 작업
   build:
     runs-on: ubuntu-latest
+    working-directory: ./joon 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
