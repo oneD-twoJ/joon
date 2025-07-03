@@ -1,57 +1,45 @@
-# 워크플로우의 이름
 name: Deploy to GitHub Pages
 
-# 이 워크플로우가 실행될 조건 (main 브랜치에 push 될 때)
 on:
   push:
     branches:
       - main
   workflow_dispatch:
 
-# 워크플로우에 필요한 권한 설정
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 동시성 설정 (배포가 중복 실행되는 것을 방지)
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  # 1. 빌드 작업
   build:
     runs-on: ubuntu-latest
-    # working-directory를 여기에 정확히 위치시킵니다.
     working-directory: ./joon
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 여기에 프로젝트에 맞는 빌드 명령어를 실행하는 단계를 추가하세요.
-      # 예: Node.js 프로젝트 설정
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Install dependencies
         run: npm install
+
       - name: Build
-        run: npm run build # React, Vue 등 대부분의 프레임워크 빌드 명령어
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # 중요: 빌드 결과물이 저장되는 폴더 경로를 정확히 지정하세요.
-          # React: ./build
-          # Vue/Vite: ./dist
-          # Jekyll: ./_site
           path: './build'
 
-  # 2. 배포 작업
   deploy:
-    # 'build' 작업이 성공해야만 실행됨
     needs: build
     runs-on: ubuntu-latest
     environment:
