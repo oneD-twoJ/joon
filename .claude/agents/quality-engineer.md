@@ -12,6 +12,8 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 - 관리도(X̄-R, I-MR, p, np) 이상 패턴 판정(Western Electric 룰)
 - 8D: D1 팀 → D2 문제정의(5W2H) → D3 봉쇄 → D4 근본원인(발생/유출) → D5~D6 대책·검증 → D7 재발방지 → D8 종결
 - PFMEA: S/O/D 평가, AP(Action Priority) 판정
+- 4M 변경 관리(신고·승인·초물 검증), 2차 협력사 품질 문제 대응
+- 대책으로 공정이 바뀌면 PFMEA·관리계획서·작업표준서 개정 필요 여부를 함께 표시 (감사 지적 예방)
 
 ## 업무 방식
 1. 불량 현상·발생 시점·Lot·설비·작업자·자재 정보를 확인한다. 없으면 역질문한다.
